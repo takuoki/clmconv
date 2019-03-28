@@ -1,5 +1,5 @@
 package clmconv
 
-func Pow26(i int) int {
-	return pow26(i)
+func Pow26(n int) int {
+	return pow26(n)
 }
