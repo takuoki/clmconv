@@ -21,7 +21,7 @@ jobs:
             if ! type golint >/dev/null 2>&1; then
               go get -u golang.org/x/lint/golint
             fi
-            golint -set_exit_status ./src/...
+            golint -set_exit_status ./...
       - save_cache:
           key: golint
           paths:
@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Checking go vet
           command: |
-            go vet ./src/...
+            go vet ./...
       # go test
       - run:
           name: Testing
