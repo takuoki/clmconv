@@ -1,0 +1,38 @@
+version: 2.1
+
+executors:
+  go-111:
+    docker:
+      - image: circleci/golang:1.11
+    working_directory: /go/src/github.com/takuoki/clmconv
+
+jobs:
+  test:
+    executor: go-111
+    steps:
+      - checkout
+      # Checking golint
+      - restore_cache:
+          keys:
+            - golint
+      - run:
+          name: Checking golint
+          command: |
+            if ! type golint >/dev/null 2>&1; then
+              go get -u golang.org/x/lint/golint
+            fi
+            golint -set_exit_status ./src/...
+      - save_cache:
+          key: golint
+          paths:
+            - /go/bin/golint
+      # Checking go vet
+      - run:
+          name: Checking go vet
+          command: |
+            go vet ./src/...
+      # Testing
+      - run:
+          name: Testing
+          command: |
+            go test -v -race -cover ./...
