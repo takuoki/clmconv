@@ -1,15 +1,10 @@
 package clmconv
 
-var m = map[int]int{}
+var pow26tab = [...]int{1, 26, 676, 17576, 456976, 11881376}
 
-func pow26(i int) int {
-	if i == 0 {
-		return 1
+func pow26(n int) int {
+	if 0 <= n && n <= 5 {
+		return pow26tab[n]
 	}
-	if v, ok := m[i]; ok {
-		return v
-	}
-	r := pow26(i-1) * 26
-	m[i] = r
-	return r
+	return pow26(n-1) * 26
 }

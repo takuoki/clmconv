@@ -20,6 +20,8 @@ func TestItoa(t *testing.T) {
 		{i: 701, expected: "ZZ"},
 		{i: 730, expected: "ABC"},
 		{i: 494264, expected: "ABCDE"},
+		{i: math.MaxInt32, expected: "FXSHRXX"},
+		{i: math.MaxInt64 - 1, expected: "CRPXNLSKVLJFHG"},
 		{i: math.MaxInt64, expected: "CRPXNLSKVLJFHH"},
 	}
 

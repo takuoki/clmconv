@@ -21,6 +21,8 @@ func TestAtoi(t *testing.T) {
 		{str: "ZZ", expected: 701},
 		{str: "ABC", expected: 730},
 		{str: "ABCDE", expected: 494264},
+		{str: "FXSHRXX", expected: math.MaxInt32},
+		{str: "CRPXNLSKVLJFHG", expected: math.MaxInt64 - 1},
 		{str: "CRPXNLSKVLJFHH", expected: math.MaxInt64},
 		{str: "a", expected: 0},
 		{str: "AbCdE", expected: 494264},
