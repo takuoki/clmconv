@@ -25,10 +25,10 @@ func BenchmarkPow26Inner(b *testing.B) {
 	}
 }
 
-func BenchmarkPow26NormalInner(b *testing.B) {
+func BenchmarkPow26SimpleInner(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, v := range testInts {
-			pow26Normal(v)
+			pow26Simple(v)
 		}
 	}
 }
@@ -50,11 +50,11 @@ func pow26(n int) int {
 	return pow26(n-1) * 26
 }
 
-func pow26Normal(n int) int {
+func pow26Simple(n int) int {
 	if n == 0 {
 		return 1
 	}
-	return pow26Normal(n-1) * 26
+	return pow26Simple(n-1) * 26
 }
 
 var m = map[int]int{}

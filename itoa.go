@@ -7,15 +7,13 @@ func Itoa(i int) string {
 		return ""
 	}
 	var r []rune
-	var c int
-	for {
+	for c := 0; ; c++ {
 		mod := i%pow26(c+1) + 1
 		r = append([]rune{rune(mod/pow26(c) + 64)}, r...)
-		i = i - mod
+		i -= mod
 		if i <= 0 {
 			break
 		}
-		c++
 	}
 	return string(r)
 }

@@ -9,32 +9,32 @@ import (
 
 func TestAtoi(t *testing.T) {
 	cases := []struct {
-		str      string
+		a        string
 		expected int
 		err      string
 	}{
 		// success
-		{str: "A", expected: 0},
-		{str: "B", expected: 1},
-		{str: "Z", expected: 25},
-		{str: "AA", expected: 26},
-		{str: "ZZ", expected: 701},
-		{str: "ABC", expected: 730},
-		{str: "ABCDE", expected: 494264},
-		{str: "FXSHRXX", expected: math.MaxInt32},
-		{str: "CRPXNLSKVLJFHG", expected: math.MaxInt64 - 1},
-		{str: "CRPXNLSKVLJFHH", expected: math.MaxInt64},
-		{str: "a", expected: 0},
-		{str: "AbCdE", expected: 494264},
+		{a: "A", expected: 0},
+		{a: "B", expected: 1},
+		{a: "Z", expected: 25},
+		{a: "AA", expected: 26},
+		{a: "ZZ", expected: 701},
+		{a: "ABC", expected: 730},
+		{a: "ABCDE", expected: 494264},
+		{a: "FXSHRXX", expected: math.MaxInt32},
+		{a: "CRPXNLSKVLJFHG", expected: math.MaxInt64 - 1},
+		{a: "CRPXNLSKVLJFHH", expected: math.MaxInt64},
+		{a: "a", expected: 0},
+		{a: "AbCdE", expected: 494264},
 
 		// error
-		{str: "", err: "argument is empty string"},
-		{str: "1", err: "must not contain non-alphabetic characters"},
-		{str: "AB!", err: "must not contain non-alphabetic characters"},
+		{a: "", err: "argument is empty string"},
+		{a: "1", err: "must not contain non-alphabetic characters"},
+		{a: "AB!", err: "must not contain non-alphabetic characters"},
 	}
 
 	for _, c := range cases {
-		r, err := clmconv.Atoi(c.str)
+		r, err := clmconv.Atoi(c.a)
 		if c.err == "" {
 			if err != nil {
 				t.Errorf("error must not occur: %s", err.Error())
