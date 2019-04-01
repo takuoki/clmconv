@@ -29,3 +29,7 @@ a := clmconv.Itoa(0) // a = "A"
 | ZZ       |     701 |
 | ABC      |     730 |
 | ABCDE    |  494264 |
+
+## References
+
+- [Blog: Library to convert Spreadsheet column string to integer](https://medium.com/veltra-engineering/library-to-convert-spreadsheet-column-string-to-integer-72a6562c5f5c) (Japanese)
