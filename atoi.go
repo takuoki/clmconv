@@ -1,3 +1,4 @@
+// Package clmconv converts spreadsheet column alphabet to integer and vice versa.
 package clmconv
 
 import (
