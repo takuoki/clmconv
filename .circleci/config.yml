@@ -39,7 +39,5 @@ jobs:
           name: Testing
           command: |
             go test -v -race -cover -coverprofile=coverage.out ./...
-            mkdir -p /tmp/artifacts
-            mv coverage.out /tmp/artifacts
       - codecov/upload:
-          file: /tmp/artifacts/coverage.out
+          file: ./coverage.out
