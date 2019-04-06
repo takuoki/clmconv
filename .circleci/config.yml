@@ -39,10 +39,11 @@ jobs:
           name: Testing
           command: |
             go test -v -race -cover -coverprofile=c.out ./...
-            go tool cover -html=c.out -o coverage.html
+            go tool cover -html=coverage.out -o coverage.html
             mkdir -p /tmp/artifacts
+            mv coverage.out /tmp/artifacts
             mv coverage.html /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
       - codecov/upload:
-          file: /tmp/artifacts/coverage.html
+          file: /tmp/artifacts/coverage.out
