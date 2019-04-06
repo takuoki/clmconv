@@ -35,4 +35,9 @@ jobs:
       - run:
           name: Testing
           command: |
-            go test -v -race -cover ./...
+            go test -v -race -cover -coverprofile=c.out ./...
+            go tool cover -html=c.out -o coverage.html
+            mkdir -p /tmp/artifacts
+            mv coverage.html /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
