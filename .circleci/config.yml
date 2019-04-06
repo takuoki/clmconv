@@ -6,6 +6,9 @@ executors:
       - image: circleci/golang:1.11
     working_directory: /go/src/github.com/takuoki/clmconv
 
+orbs:
+  codecov: codecov/codecov@1.0.4
+
 jobs:
   build:
     executor: go-111
@@ -35,4 +38,8 @@ jobs:
       - run:
           name: Testing
           command: |
-            go test -v -race -cover ./...
+            go test -v -race -cover -coverprofile=coverage.out ./...
+            mkdir -p /tmp/artifacts
+            mv coverage.out /tmp/artifacts
+      - codecov/upload:
+          file: /tmp/artifacts/coverage.out
