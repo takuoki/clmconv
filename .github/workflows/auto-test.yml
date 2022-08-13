@@ -1,0 +1,38 @@
+name: auto-test
+on:
+  push:
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.19
+      - name: go-mod-download
+        run: go mod download
+        working-directory: .
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.46.2
+          working-directory: .
+  test:
+    name: test
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.19
+      - run: go mod download
+        working-directory: .
+      - run: go test -race -cover -coverprofile="coverage.txt" ./...
+        working-directory: .
+      - uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.txt
+          fail_ci_if_error: true
+          verbose: true
