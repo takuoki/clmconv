@@ -2,7 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/takuoki/clmconv?status.svg)](https://godoc.org/github.com/takuoki/clmconv)
 ![CI](https://github.com/takuoki/clmconv/actions/workflows/auto-test.yml/badge.svg)
-[![codecov](https://codecov.io/gh/takuoki/clmconv/branch/main/graph/badge.svg)](https://codecov.io/gh/takuoki/clmconv)
+[![codecov](https://codecov.io/gh/takuoki/clmconv/branch/main/graph/badge.svg?token=wiEHcO5AML)](https://codecov.io/gh/takuoki/clmconv)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 A golang package for converting to spreadsheet column alphabet or integer.
