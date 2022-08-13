@@ -9,29 +9,49 @@ A golang package for converting to spreadsheet column alphabet or integer.
 
 ## Usage
 
+### Default converter
+
 ```go
 i, err := clmconv.Atoi("A") // i = 0
 ```
 
 ```go
-i := clmconv.MustAtoi("A") // i = 0
+i := clmconv.MustAtoi("a") // i = 0
 ```
 
 ```go
 a := clmconv.Itoa(0) // a = "A"
 ```
 
+### Custom converter
+
+```go
+converter := clmconv.New(clmconv.WithStartFromOne(), clmconv.WithLowercase())
+```
+
+```go
+i, err := converter.Atoi("A") // i = 1
+```
+
+```go
+i := converter.MustAtoi("a") // i = 1
+```
+
+```go
+a := converter.Itoa(1) // a = "a"
+```
+
 ## Example
 
-| Alphabet | Integer |
-|:---------|--------:|
-| A        |       0 |
-| B        |       1 |
-| Z        |      25 |
-| AA       |      26 |
-| ZZ       |     701 |
-| ABC      |     730 |
-| ABCDE    |  494264 |
+| Alphabet | Integer | Integer (WithStartFromOne) |
+| :------- | ------: | -------------------------: |
+| A        |       0 |                          1 |
+| B        |       1 |                          2 |
+| Z        |      25 |                         26 |
+| AA       |      26 |                         27 |
+| ZZ       |     701 |                        702 |
+| ABC      |     730 |                        731 |
+| ABCDE    |  494264 |                     494265 |
 
 ## References
 

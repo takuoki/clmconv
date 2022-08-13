@@ -7,10 +7,21 @@ import (
 )
 
 func Example() {
+
+	// Default converter
 	i, _ := clmconv.Atoi("A")
 	a := clmconv.Itoa(0)
-	fmt.Printf("i=%d, a='%s'", i, a)
-	// Output: i=0, a='A'
+	fmt.Printf("i=%d, a='%s'\n", i, a)
+
+	// Custom converter
+	converter := clmconv.New(clmconv.WithStartFromOne(), clmconv.WithLowercase())
+	i, _ = converter.Atoi("A")
+	a = converter.Itoa(1)
+	fmt.Printf("i=%d, a='%s'\n", i, a)
+
+	// Output:
+	// i=0, a='A'
+	// i=1, a='a'
 }
 
 func ExampleAtoi() {
@@ -18,7 +29,9 @@ func ExampleAtoi() {
 	bi, _ := clmconv.Atoi("B")
 	_, err := clmconv.Atoi("error!")
 	fmt.Printf("ai=%d, bi=%d, err='%v'", ai, bi, err)
-	// Output: ai=0, bi=1, err='must not contain non-alphabetic characters'
+
+	// Output:
+	// ai=0, bi=1, err='must not contain non-alphabetic characters'
 }
 
 func ExampleMustAtoi() {
@@ -33,7 +46,9 @@ func ExampleMustAtoi() {
 		return nil
 	}()
 	fmt.Printf("ai=%d, v='%v'", ai, v)
-	// Output: ai=0, v='must not contain non-alphabetic characters'
+
+	// Output:
+	// ai=0, v='must not contain non-alphabetic characters'
 }
 
 func ExampleItoa() {
@@ -41,5 +56,7 @@ func ExampleItoa() {
 	a1 := clmconv.Itoa(1)
 	an := clmconv.Itoa(-1)
 	fmt.Printf("a0='%s', a1='%s', an='%s'", a0, a1, an)
-	// Output: a0='A', a1='B', an=''
+
+	// Output:
+	// a0='A', a1='B', an=''
 }
