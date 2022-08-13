@@ -1,8 +1,8 @@
 # clmconv
 
-[![CircleCI](https://circleci.com/gh/takuoki/clmconv.svg?style=shield&circle-token=0d4dc479afa80d4399bb7a457584142d37d3f50e)](https://circleci.com/gh/takuoki/clmconv)
-[![codecov](https://codecov.io/gh/takuoki/clmconv/branch/master/graph/badge.svg)](https://codecov.io/gh/takuoki/clmconv)
 [![GoDoc](https://godoc.org/github.com/takuoki/clmconv?status.svg)](https://godoc.org/github.com/takuoki/clmconv)
+![CI](https://github.com/takuoki/clmconv/actions/workflows/auto-test.yml/badge.svg)
+[![codecov](https://codecov.io/gh/takuoki/clmconv/branch/main/graph/badge.svg)](https://codecov.io/gh/takuoki/clmconv)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 A golang package for converting to spreadsheet column alphabet or integer.
