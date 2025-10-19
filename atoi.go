@@ -16,13 +16,7 @@ func (c *Converter) Atoi(s string) (int, error) {
 		return 0, errors.New("argument is empty string")
 	}
 
-	// Length check for potential overflow
-	// 14 characters is the practical limit for int64
-	if len(s) > 14 {
-		return 0, errors.New("integer overflow")
-	}
-
-	r := -c.offset
+	result := -c.offset
 	for i, char := range s {
 		var charValue int
 		if 'A' <= char && char <= 'Z' {
@@ -36,21 +30,21 @@ func (c *Converter) Atoi(s string) (int, error) {
 		power := pow26(len(s) - i - 1)
 
 		// Check for multiplication overflow
-		if charValue > 0 && power > math.MaxInt/charValue {
+		if charValue > 0 && power > 0 && charValue > math.MaxInt/power {
 			return 0, errors.New("integer overflow")
 		}
 
 		product := charValue * power
 
 		// Check for addition overflow
-		if r > math.MaxInt-product {
+		if product > 0 && result > math.MaxInt-product {
 			return 0, errors.New("integer overflow")
 		}
 
-		r += product
+		result += product
 	}
 
-	return r, nil
+	return result, nil
 }
 
 // MustAtoi converts alphabet to number.
