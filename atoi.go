@@ -2,6 +2,7 @@ package clmconv
 
 import (
 	"errors"
+	"math"
 )
 
 // Atoi converts alphabet to number.
@@ -14,17 +15,37 @@ func (c *Converter) Atoi(s string) (int, error) {
 	if s == "" {
 		return 0, errors.New("argument is empty string")
 	}
-	var r int
+
+	// Initialize with offset to prevent overflow during calculation
+	result := -c.offset
 	for i, char := range s {
+		var charValue int
 		if 'A' <= char && char <= 'Z' {
-			r += (int(char) - runeOffsetUpper) * pow26(len(s)-i-1)
+			charValue = int(char) - runeOffsetUpper
 		} else if 'a' <= char && char <= 'z' {
-			r += (int(char) - runeOffsetLower) * pow26(len(s)-i-1)
+			charValue = int(char) - runeOffsetLower
 		} else {
 			return 0, errors.New("must not contain non-alphabetic characters")
 		}
+
+		power := pow26(len(s) - i - 1)
+
+		// Check for multiplication overflow
+		if charValue > 0 && power > 0 && charValue > math.MaxInt/power {
+			return 0, errors.New("integer overflow")
+		}
+
+		product := charValue * power
+
+		// Check for addition overflow
+		if product > 0 && result > math.MaxInt-product {
+			return 0, errors.New("integer overflow")
+		}
+
+		result += product
 	}
-	return r - c.offset, nil
+
+	return result, nil
 }
 
 // MustAtoi converts alphabet to number.

@@ -49,6 +49,12 @@ func TestConverter_Atoi(t *testing.T) {
 		{conv: dc, a: "", err: "argument is empty string"},
 		{conv: dc, a: "1", err: "must not contain non-alphabetic characters"},
 		{conv: dc, a: "AB!", err: "must not contain non-alphabetic characters"},
+		{conv: dc, a: "CRPXNLSKVLJFHI", err: "integer overflow"},
+		{conv: dc, a: "AAAAAAAAAAAAAAA", err: "integer overflow"},
+		{conv: dc, a: "DAAAAAAAAAAAAA", err: "integer overflow"},
+		{conv: cc, a: "CRPXNLSKVLJFHH", err: "integer overflow"},
+		{conv: cc, a: "AAAAAAAAAAAAAAA", err: "integer overflow"},
+		{conv: cc, a: "DAAAAAAAAAAAAA", err: "integer overflow"},
 	}
 
 	for _, c := range cases {

@@ -9,18 +9,34 @@ func Itoa(i int) string {
 // Itoa converts number to alphabet with converter.
 // If argument is negative, returns empty string.
 func (c *Converter) Itoa(i int) string {
-	i = i + c.offset - 1
-	if i < 0 {
+	// Adjust input based on converter offset
+	adjustedInput := i + c.offset - 1
+	if adjustedInput < 0 {
 		return ""
 	}
-	var r []rune
-	for char := 0; ; char++ {
-		mod := i%pow26(char+1) + 1
-		r = append([]rune{rune(mod/pow26(char) + c.runeOffset)}, r...)
-		i -= mod
-		if i <= 0 {
+
+	var result []rune
+	current := adjustedInput
+
+	// Convert to bijective base-26 (Excel-style column naming)
+	for {
+		// Calculate position in current digit (0-25)
+		remainder := current % 26
+
+		// Convert to rune (A-Z or a-z based on runeOffset)
+		char := rune(remainder + c.runeOffset + 1)
+		result = append([]rune{char}, result...)
+
+		// Move to next higher digit
+		current = current / 26
+
+		// For bijective base-26, we need to adjust when moving to next digit
+		if current > 0 {
+			current--
+		} else {
 			break
 		}
 	}
-	return string(r)
+
+	return string(result)
 }
