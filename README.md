@@ -1,11 +1,17 @@
 # clmconv
 
-[![GoDoc](https://godoc.org/github.com/takuoki/clmconv?status.svg)](https://godoc.org/github.com/takuoki/clmconv)
+[![Go Reference](https://pkg.go.dev/badge/github.com/takuoki/clmconv.svg)](https://pkg.go.dev/github.com/takuoki/clmconv)
 ![CI](https://github.com/takuoki/clmconv/actions/workflows/auto-test.yml/badge.svg)
 [![codecov](https://codecov.io/gh/takuoki/clmconv/branch/main/graph/badge.svg?token=wiEHcO5AML)](https://codecov.io/gh/takuoki/clmconv)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 A golang package for converting to spreadsheet column alphabet or integer.
+
+## Install
+
+```bash
+go get github.com/takuoki/clmconv
+```
 
 ## Usage
 
