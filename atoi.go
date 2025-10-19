@@ -16,6 +16,7 @@ func (c *Converter) Atoi(s string) (int, error) {
 		return 0, errors.New("argument is empty string")
 	}
 
+	// Initialize with offset to prevent overflow during calculation
 	result := -c.offset
 	for i, char := range s {
 		var charValue int
